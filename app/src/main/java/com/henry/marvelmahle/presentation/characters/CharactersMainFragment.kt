@@ -15,8 +15,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.henry.marvelmahle.R
-import com.henry.marvelmahle.data.model.CharacterId
-import com.henry.marvelmahle.data.model.Results
+import com.henry.marvelmahle.data.model.characters.CharacterId
+import com.henry.marvelmahle.data.model.characters.CharacterResult
 import com.henry.marvelmahle.ext.hideInProgress
 import com.henry.marvelmahle.ext.showInProgress
 import com.henry.marvelmahle.utils.Status
@@ -102,7 +102,7 @@ class CharactersMainFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    private fun renderList(characters: List<Results>) {
+    private fun renderList(characters: List<CharacterResult>) {
         adapter.setData(characters, onAdapterItemClick)
         adapter.notifyItemRangeChanged(0, characters.size)
     }
@@ -113,10 +113,10 @@ class CharactersMainFragment : Fragment() {
     private fun navigateToCharacterDetails(characterId: CharacterId) {
         val bundle = bundleOf("characterId" to characterId)
 
-        /*Navigation.findNavController(this.requireView()).navigate(
+        Navigation.findNavController(this.requireView()).navigate(
             R.id.characterMainFragment_to_characterDetailsFragment,
             bundle
-        )*/
+        )
     }
     // endregion
 }

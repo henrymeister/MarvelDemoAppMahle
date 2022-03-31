@@ -8,24 +8,24 @@
         android:id="@+id/characterMainFragment"
         android:name="com.henry.marvelmahle.presentation.characters.CharactersMainFragment"
         android:label="CharactersMainFragment">
-        <!--<action
+        <action
             android:id="@+id/characterMainFragment_to_characterDetailsFragment"
             app:destination="@id/characterDetailsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>-->
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
-    <!--<fragment
+    <fragment
         android:id="@+id/characterDetailsFragment"
-        android:name="com.henry.marvelmahle.presentation.character.characterDetails"
+        android:name="com.henry.marvelmahle.presentation.characters.characterDetails.CharacterDetailsFragment"
         android:label="OompaLoompaDetailsFragment">
         <argument
             android:name="oompaId"
             android:defaultValue="-1"
             app:argType="integer" />
-    </fragment>-->
+    </fragment>
 
 
 </navigation>

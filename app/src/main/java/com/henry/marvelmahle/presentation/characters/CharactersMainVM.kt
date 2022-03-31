@@ -1,11 +1,10 @@
 package com.henry.marvelmahle.presentation.characters
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.henry.marvelmahle.data.model.Results
+import com.henry.marvelmahle.data.model.characters.CharacterResult
 import com.henry.marvelmahle.data.repository.AppRepository
 import com.henry.marvelmahle.utils.NetworkHelper
 import com.henry.marvelmahle.utils.Resource
@@ -18,8 +17,8 @@ class CharactersMainVM (
 
     // region PROPERTIES ---------------------------------------------------------------------------
 
-    private val _characterList = MutableLiveData<Resource<List<Results>>>()
-    val characterList: LiveData<Resource<List<Results>>> = _characterList
+    private val _characterList = MutableLiveData<Resource<List<CharacterResult>>>()
+    val characterList: LiveData<Resource<List<CharacterResult>>> = _characterList
 
     init {
         getCharacterList()
@@ -35,8 +34,7 @@ class CharactersMainVM (
             if (networkHelper.isNetworkConnected()) {
                 appRepository.getCharacters().let {
                     if (it.isSuccessful) {
-                        val characterList = it.body()?.data?.results as ArrayList<Results>
-                        _characterList.postValue(Resource.success(characterList))
+                        _characterList.postValue(Resource.success(it.body()?.data?.results))
                     } else {
                         _characterList.postValue(Resource.error(it.errorBody().toString(), null))
                     }

@@ -10,6 +10,9 @@
     <dimen name="field_margin_end">@dimen/general_margin</dimen>
     <dimen name="field_margin_top">@dimen/general_margin</dimen>
 
+    <!-- Border radius -->
+    <dimen name="general_border_radius">8dp</dimen>
+
     <!-- App bar -->
     <dimen name="app_bar_height">56dp</dimen>
     <dimen name="app_bar_text_size">20sp</dimen>

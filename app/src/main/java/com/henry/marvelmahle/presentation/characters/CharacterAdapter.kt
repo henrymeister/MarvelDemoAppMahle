@@ -13,12 +13,12 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.henry.marvelmahle.R
-import com.henry.marvelmahle.data.model.CharacterId
-import com.henry.marvelmahle.data.model.Results
+import com.henry.marvelmahle.data.model.characters.CharacterId
+import com.henry.marvelmahle.data.model.characters.CharacterResult
 import kotlinx.android.synthetic.main.character_item_layout.view.*
 
 class CharacterAdapter(
-    private var charactersList: ArrayList<Results>,
+    private var charactersList: ArrayList<CharacterResult>,
     private var onItemClickListener: (CharacterId) -> Unit
 ) : RecyclerView.Adapter<CharacterAdapter.DataViewHolder>() {
 
@@ -41,10 +41,10 @@ class CharacterAdapter(
     //region HOLDERS -------------------------------------------------------------------------------
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(character: Results, onItemClickListener: (CharacterId) -> Unit) {
+        fun bind(character: CharacterResult, onItemClickListener: (CharacterId) -> Unit) {
             itemView.tvName.text = character.name
-            itemView.tvComicsCount.text = character.comics?.items?.size.toString()
-            itemView.tvSeriesCount.text = character.series?.items?.size.toString()
+            itemView.tvComicsCount.text = character.comics.available
+            itemView.tvSeriesCount.text = character.series.available
             Glide.with(itemView.ivAvatar)
                 .load(character.thumbnail.path + "." + character.thumbnail.extension)
                 .error(R.drawable.ic_launcher_background)
@@ -87,7 +87,7 @@ class CharacterAdapter(
 
     // region PUBLIC METHODS -----------------------------------------------------------------------
 
-    fun setData(list: List<Results>, onItemClickListener: (CharacterId) -> Unit) {
+    fun setData(list: List<CharacterResult>, onItemClickListener: (CharacterId) -> Unit) {
         charactersList = ArrayList()
         charactersList.addAll(list)
         this.onItemClickListener = onItemClickListener

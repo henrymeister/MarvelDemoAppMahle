@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Henry/Documents/Empresas/Mahle/App/MarvelDemoAppMahle/App/app/src/main/res/drawable/selector_tab_layout.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Henry/Documents/Empresas/Mahle/App/MarvelDemoAppMahle/App/app/src/main/res/layout/activity_main.xml" value="0.2741477272727273" />
+        <entry key="..\:/Users/Henry/Documents/Empresas/Mahle/App/MarvelDemoAppMahle/App/app/src/main/res/layout/character_detail_layout.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Henry/Documents/Empresas/Mahle/App/MarvelDemoAppMahle/App/app/src/main/res/layout/character_home_layout.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Henry/Documents/Empresas/Mahle/App/MarvelDemoAppMahle/App/app/src/main/res/layout/character_item_layout.xml" value="0.25" />
+        <entry key="..\:/Users/Henry/Documents/Empresas/Mahle/App/MarvelDemoAppMahle/App/app/src/main/res/layout/comics_home_layout.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Henry/Documents/Empresas/Mahle/App/MarvelDemoAppMahle/App/app/src/main/res/layout/comics_item_layout.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Henry/Documents/Empresas/Mahle/App/MarvelDemoAppMahle/App/app/src/main/res/layout/series_home_layout.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Henry/Documents/Empresas/Mahle/App/MarvelDemoAppMahle/App/app/src/main/res/layout/series_item_layout.xml" value="0.20520833333333333" />
       </map>
     </option>
   </component>
