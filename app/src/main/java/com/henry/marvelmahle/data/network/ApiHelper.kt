@@ -11,4 +11,5 @@ interface ApiHelper {
     suspend fun getCharacters(): Response<CharacterResponse>
     suspend fun getCharacterSeries(characterId: CharacterId): Response<SeriesResponse>
     suspend fun getCharacterComics(characterId: CharacterId): Response<ComicResponse>
+    suspend fun searchCharacter(nameStartsWith: String): Response<CharacterResponse>
 }

@@ -21,4 +21,8 @@ class AppRepository (
     suspend fun getCharacterComics(characterId: CharacterId): Response<ComicResponse> {
         return apiHelper.getCharacterComics(characterId)
     }
+
+    suspend fun searchCharacter(nameStartsWith: String): Response<CharacterResponse> {
+        return apiHelper.searchCharacter(nameStartsWith)
+    }
 }

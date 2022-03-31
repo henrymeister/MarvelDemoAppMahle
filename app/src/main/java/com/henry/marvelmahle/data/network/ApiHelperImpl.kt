@@ -18,4 +18,8 @@ class ApiHelperImpl(private val apiService: ApiService) : ApiHelper {
     override suspend fun getCharacterComics(characterId: CharacterId): Response<ComicResponse> {
         return apiService.getCharacterComics(characterId)
     }
+
+    override suspend fun searchCharacter(nameStartsWith: String): Response<CharacterResponse> {
+        return apiService.searchCharacter(nameStartsWith)
+    }
 }
