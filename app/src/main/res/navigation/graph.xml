@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/graph">
+    android:id="@+id/graph"
+    app:startDestination="@id/characterMainFragment">
+
+    <fragment
+        android:id="@+id/characterMainFragment"
+        android:name="com.henry.marvelmahle.presentation.characters.CharactersMainFragment"
+        android:label="CharactersMainFragment">
+        <action
+            android:id="@+id/characterMainFragment_to_characterDetailsFragment"
+            app:destination="@id/characterDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/characterDetailsFragment"
+        android:name="com.henry.marvelmahle.presentation.characters.characterDetails.CharacterDetailsFragment"
+        android:label="OompaLoompaDetailsFragment">
+        <argument
+            android:name="oompaId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+
 
 </navigation>

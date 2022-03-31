@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- General margins -->
+    <dimen name="general_margin">16dp</dimen>
+    <dimen name="general_half_margin">8dp</dimen>
+    <dimen name="general_quarter_margin">4dp</dimen>
+
+    <!-- Field margins -->
+    <dimen name="field_margin_start">@dimen/general_margin</dimen>
+    <dimen name="field_margin_end">@dimen/general_margin</dimen>
+    <dimen name="field_margin_top">@dimen/general_margin</dimen>
+
+    <!-- Border radius -->
+    <dimen name="general_border_radius">8dp</dimen>
+
+    <!-- App bar -->
+    <dimen name="app_bar_height">56dp</dimen>
+    <dimen name="app_bar_text_size">20sp</dimen>
+    <dimen name="app_bar_navigation_icon_height">40dp</dimen>
+    <dimen name="field_height">56dp</dimen>
+    <dimen name="radio_button_margin_left">10dp</dimen>
+    <dimen name="selector_dialog_height">328dp</dimen>
+
+    <!-- Button -->
+    <dimen name="button_min_height">40dp</dimen>
+    <dimen name="button_middle_height">48dp</dimen>
+    <dimen name="button_middle_height_same_as_textfield">50dp</dimen>
+    <dimen name="button_large_height">56dp</dimen>
+    <dimen name="button_xlarge_height">80dp</dimen>
+    <dimen name="button_corner_radius">4dp</dimen>
+    <dimen name="button_text_corner_radius">0dp</dimen>
+    <dimen name="button_icon_padding">16dp</dimen>
+    <dimen name="button_margin_start">16dp</dimen>
+    <dimen name="button_margin_end">16dp</dimen>
+    <dimen name="button_height_plus_margin">88dp</dimen>
+    <dimen name="button_inset_top">0dp</dimen>
+    <dimen name="button_inset_bottom">0dp</dimen>
+    <dimen name="button_into_textfield_margin_top">11dp</dimen>
+    <dimen name="button_into_textfield_margin_end">22dp</dimen>
+    <dimen name="button_height_plus_fab_plus_margin">160dp</dimen>
+    <dimen name="selector_dialog_item_list_height">56dp</dimen>
+</resources>
