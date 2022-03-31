@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     //region NAVIGATION ----------------------------------------------------------------------------
     private fun navigateToSplashFragment() {
-        //navController.navigate(R.id.mainFragment)
+        navController.navigate(R.id.characterMainFragment)
     }
     // endregion
 }
