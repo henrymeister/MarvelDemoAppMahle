@@ -1,11 +1,10 @@
 package com.henry.marvelmahle.presentation.characters
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -44,6 +43,33 @@ class CharactersMainFragment : Fragment() {
         hideInProgress()
         setLayout()
         setAppBar()
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.character_menu, menu)
+
+        val searchItem = menu.findItem(R.id.all_character_search)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.queryHint = "Search Character"
+        searchView.setIconifiedByDefault(false)
+        searchView.onActionViewExpanded()
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != null) {
+                    viewModel.searchCharacter(newText)
+                }
+                return true
+            }
+        })
+
     }
     //endregion
 
@@ -84,6 +110,7 @@ class CharactersMainFragment : Fragment() {
 
     private fun setAppBar() {
         (activity as AppCompatActivity).supportActionBar?.title = resources.getString(R.string.home)
+        setHasOptionsMenu(true)
     }
 
     private fun setLayout() {

@@ -7,6 +7,7 @@ import com.henry.marvelmahle.data.model.series.SeriesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     companion object {
@@ -30,4 +31,11 @@ interface ApiService {
     suspend fun getCharacterComics(
         @Path("characterId") characterId: CharacterId
     ): Response<ComicResponse>
+
+    @GET(PATH)
+    suspend fun searchCharacter(
+        @Query("nameStartsWith") query: String,
+        @Query("offset") offset: Int? = 0,
+        @Query("limit") limit: Int? = 20
+    ): Response<CharacterResponse>
 }

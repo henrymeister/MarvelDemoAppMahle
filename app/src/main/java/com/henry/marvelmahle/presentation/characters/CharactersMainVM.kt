@@ -25,6 +25,23 @@ class CharactersMainVM (
     }
     // endregion
 
+    // region PUBLIC METHODS ----------------------------------------------------------------------
+
+    fun searchCharacter(newText: String) {
+        viewModelScope.launch {
+            _characterList.postValue(Resource.loading(null))
+            if (networkHelper.isNetworkConnected()) {
+                appRepository.searchCharacter(newText).let {
+                    if (it.isSuccessful) {
+                        _characterList.postValue(Resource.success(it.body()?.data?.results))
+                    } else {
+                        _characterList.postValue(Resource.error(it.errorBody().toString(), null))
+                    }
+                }
+            } else _characterList.postValue(Resource.error("No internet connection", null))
+        }
+    }
+    // endregion
 
     // region PRIVATE METHODS ----------------------------------------------------------------------
 
@@ -42,5 +59,6 @@ class CharactersMainVM (
             } else _characterList.postValue(Resource.error("No internet connection", null))
         }
     }
+
     // endregion
 }
