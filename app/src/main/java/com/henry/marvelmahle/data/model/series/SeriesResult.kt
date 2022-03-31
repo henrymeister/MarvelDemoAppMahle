@@ -1,7 +1,8 @@
 package com.henry.marvelmahle.data.model.series
 
+typealias SeriesId = String
 data class SeriesResult(
-    val id: String,
+    val id: SeriesId,
     val title: String,
     val description: String,
     val thumbnail: SeriesThumbnail

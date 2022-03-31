@@ -1,9 +1,6 @@
 package com.henry.marvelmahle.presentation.characters
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -90,7 +87,6 @@ class CharactersMainFragment : Fragment() {
     }
 
     private fun setLayout() {
-
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = CharacterAdapter(arrayListOf(), onAdapterItemClick)
         recyclerView.addItemDecoration(

@@ -1,5 +1,6 @@
 package com.henry.marvelmahle.data.model.comic
 
+typealias ComicId = String
 data class ComicResult(
     val id: String,
     val title: String,

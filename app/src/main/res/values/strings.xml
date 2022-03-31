@@ -3,4 +3,6 @@
     <string name="avatar">avatar</string>
     <string name="home">Home</string>
     <string name="no_result_found">No results found</string>
+    <string name="comics">Comics:</string>
+    <string name="series">Series:</string>
 </resources>
