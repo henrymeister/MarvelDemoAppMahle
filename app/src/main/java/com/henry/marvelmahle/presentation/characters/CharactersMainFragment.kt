@@ -2,7 +2,6 @@ package com.henry.marvelmahle.presentation.characters
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
@@ -13,8 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.henry.marvelmahle.R
 import com.henry.marvelmahle.data.model.characters.CharacterId
 import com.henry.marvelmahle.data.model.characters.CharacterResult
+import com.henry.marvelmahle.ext.PaginationScrollListener
 import com.henry.marvelmahle.ext.hideInProgress
 import com.henry.marvelmahle.ext.showInProgress
+import com.henry.marvelmahle.ext.showInProgressTouchable
 import com.henry.marvelmahle.utils.Status
 import kotlinx.android.synthetic.main.character_home_layout.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -29,6 +30,9 @@ class CharactersMainFragment : Fragment() {
     private val onAdapterItemClick: (CharacterId) -> Unit = { characterId ->
         navigateToCharacterDetails(characterId)
     }
+
+    var isLastPage: Boolean = false
+    var isLoading: Boolean = false
     // endregion
 
 
@@ -42,6 +46,13 @@ class CharactersMainFragment : Fragment() {
         setObserver()
         setLayout()
         setAppBar()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adapter.dumpList()
+        adapter.notifyItemRangeRemoved(0, adapter.itemCount)
+        viewModel.getAllCharacterList()
     }
 
 
@@ -79,15 +90,14 @@ class CharactersMainFragment : Fragment() {
             when (it.status) {
                 Status.LOADING -> {
                     showInProgress()
+                    isLoading = true
                     recyclerView.visibility = View.GONE
                     tv_noResultFound.visibility = View.VISIBLE
                 }
                 Status.SUCCESS -> {
                     hideInProgress()
-                    if (it.data == null || it.data.isEmpty()) {
-                        recyclerView.visibility = View.GONE
-                        tv_noResultFound.visibility = View.VISIBLE
-                    } else {
+                    isLoading = false
+                    if (!it.data.isNullOrEmpty()) {
                         renderList(it.data)
                         recyclerView.visibility = View.VISIBLE
                         tv_noResultFound.visibility = View.GONE
@@ -95,6 +105,7 @@ class CharactersMainFragment : Fragment() {
                 }
                 Status.ERROR -> {
                     hideInProgress()
+                    isLoading = false
                     recyclerView.visibility = View.GONE
                     tv_noResultFound.visibility = View.VISIBLE
                 }
@@ -117,11 +128,27 @@ class CharactersMainFragment : Fragment() {
             )
         )
         recyclerView.adapter = adapter
+
+        recyclerView.addOnScrollListener(object : PaginationScrollListener(recyclerView.layoutManager as LinearLayoutManager) {
+            override fun isLastPage(): Boolean {
+                return isLastPage
+            }
+
+            override fun isLoading(): Boolean {
+                return isLoading
+            }
+
+            override fun loadMoreItems() {
+                isLoading = true
+                showInProgressTouchable()
+                viewModel.getAllCharacterList(adapter.itemCount)
+            }
+        })
     }
 
     private fun renderList(characters: List<CharacterResult>) {
-        adapter.setData(characters, onAdapterItemClick)
-        adapter.notifyItemRangeChanged(0, characters.size)
+        adapter.addData(characters, onAdapterItemClick)
+        adapter.notifyItemRangeChanged(adapter.itemCount, characters.size)
     }
     // endregion
 

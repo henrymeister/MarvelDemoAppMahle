@@ -13,6 +13,7 @@ import com.henry.marvelmahle.data.model.series.SeriesId
 import com.henry.marvelmahle.data.model.series.SeriesResult
 import com.henry.marvelmahle.ext.hideInProgress
 import com.henry.marvelmahle.ext.showInProgress
+import com.henry.marvelmahle.ext.showInProgressTouchable
 import com.henry.marvelmahle.utils.Status
 import kotlinx.android.synthetic.main.character_home_layout.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -60,7 +61,7 @@ class SeriesMainFragment(private val characterId: String): Fragment() {
         viewModel.characterSeriesList.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.LOADING -> {
-                    showInProgress()
+                    showInProgressTouchable()
                     recyclerView.visibility = View.GONE
                     tv_noResultFound.visibility = View.VISIBLE
                 }

@@ -47,9 +47,9 @@ class CharacterDetailsFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_character_details, menu)
 
-        val backButton = menu.findItem(R.id.backButton).actionView
+        val backButton = menu.findItem(R.id.backButton)
 
-        backButton.setOnClickListener {
+        backButton.setOnMenuItemClickListener {
             findNavController().popBackStack()
         }
 
@@ -113,8 +113,8 @@ class CharacterDetailsFragment : Fragment() {
 
         TabLayoutMediator(tlCharacter, vpCharacter) { tab, position ->
             when (position) {
-                0 -> tab.text = "Comics"
-                1 -> tab.text = "Series"
+                0 -> tab.text = resources.getString(R.string.comicTitle)
+                1 -> tab.text = resources.getString(R.string.seriesTitle)
             }
         }.attach()
     }

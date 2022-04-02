@@ -8,8 +8,8 @@ import retrofit2.Response
 class CharactersRepository (
     private val apiHelper: CharacterApiHelper
 ) {
-    suspend fun getCharacters(): Response<CharacterResponse> {
-        return apiHelper.getCharacters()
+    suspend fun getCharacters(offset: Int = 0): Response<CharacterResponse> {
+        return apiHelper.getCharacters(offset)
     }
 
     suspend fun getCharacterById(characterId: CharacterId): Response<CharacterResponse> {

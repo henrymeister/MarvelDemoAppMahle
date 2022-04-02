@@ -19,6 +19,14 @@ fun Fragment.showInProgress() {
     }
 }
 
+fun Fragment.showInProgressTouchable() {
+    try {
+        loadingView()?.isVisible = true
+    } catch (e: Exception) {
+        Log.e("requireActivity()", "Fragment.showInProgress()")
+    }
+}
+
 fun Fragment.hideInProgress() {
     try {
         loadingView()?.isVisible = false
