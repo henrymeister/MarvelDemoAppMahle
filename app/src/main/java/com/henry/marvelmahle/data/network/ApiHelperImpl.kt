@@ -11,6 +11,10 @@ class ApiHelperImpl(private val apiService: ApiService) : ApiHelper {
         return apiService.getCharacters()
     }
 
+    override suspend fun getCharacterById(characterId: CharacterId): Response<CharacterResponse> {
+        return apiService.getCharacterById(characterId)
+    }
+
     override suspend fun getCharacterSeries(characterId: CharacterId): Response<SeriesResponse> {
         return apiService.getCharacterSeries(characterId)
     }

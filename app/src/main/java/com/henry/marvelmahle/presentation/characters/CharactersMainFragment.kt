@@ -40,7 +40,6 @@ class CharactersMainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setObserver()
-        hideInProgress()
         setLayout()
         setAppBar()
     }
@@ -48,9 +47,9 @@ class CharactersMainFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.character_menu, menu)
+        inflater.inflate(R.menu.menu_character, menu)
 
-        val searchItem = menu.findItem(R.id.all_character_search)
+        val searchItem = menu.findItem(R.id.charactersSearch)
         val searchView = searchItem.actionView as SearchView
 
         searchView.queryHint = "Search Character"

@@ -15,7 +15,7 @@ import com.bumptech.glide.request.target.Target
 import com.henry.marvelmahle.R
 import com.henry.marvelmahle.data.model.series.SeriesId
 import com.henry.marvelmahle.data.model.series.SeriesResult
-import kotlinx.android.synthetic.main.series_item_layout.view.*
+import kotlinx.android.synthetic.main.item_series.view.*
 
 class SeriesAdapter(
     private var seriesList: ArrayList<SeriesResult>,
@@ -27,7 +27,7 @@ class SeriesAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         DataViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.series_item_layout, parent,
+                R.layout.item_series, parent,
                 false
             )
         )
@@ -42,10 +42,10 @@ class SeriesAdapter(
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(serie: SeriesResult, onItemClickListener: (SeriesId) -> Unit) {
-            itemView.serie_name.text = serie.title
-            itemView.serie_description.text = serie.description
+            itemView.tvSerieName.text = serie.title
+            itemView.tvSerieDescription.text = serie.description
 
-            Glide.with(itemView.serie_image)
+            Glide.with(itemView.ivSerie)
                 .load(serie.thumbnail.path + "." + serie.thumbnail.extension)
                 .error(R.drawable.ic_launcher_background)
                 .listener(object : RequestListener<Drawable> {
@@ -55,7 +55,7 @@ class SeriesAdapter(
                         target: Target<Drawable>?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        itemView.serie_progressbar.isVisible = false
+                        itemView.pbSerie.isVisible = false
                         Log.e("CHARACTER", "IMAGE KO")
                         return false
                     }
@@ -67,13 +67,13 @@ class SeriesAdapter(
                         dataSource: DataSource?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        itemView.serie_progressbar.isVisible = false
+                        itemView.pbSerie.isVisible = false
                         Log.e("CHARACTER", "IMAGE Ok")
                         return false
                     }
                 })
                 .circleCrop()
-                .into(itemView.serie_image)
+                .into(itemView.ivSerie)
 
 
             itemView.setOnClickListener {

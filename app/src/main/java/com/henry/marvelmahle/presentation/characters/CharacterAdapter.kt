@@ -15,7 +15,7 @@ import com.bumptech.glide.request.target.Target
 import com.henry.marvelmahle.R
 import com.henry.marvelmahle.data.model.characters.CharacterId
 import com.henry.marvelmahle.data.model.characters.CharacterResult
-import kotlinx.android.synthetic.main.character_item_layout.view.*
+import kotlinx.android.synthetic.main.item_character.view.*
 
 class CharacterAdapter(
     private var charactersList: ArrayList<CharacterResult>,
@@ -27,7 +27,7 @@ class CharacterAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         DataViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.character_item_layout, parent,
+                R.layout.item_character, parent,
                 false
             )
         )
@@ -42,7 +42,7 @@ class CharacterAdapter(
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(character: CharacterResult, onItemClickListener: (CharacterId) -> Unit) {
-            itemView.tvName.text = character.name
+            itemView.tvCharacterDetailsName.text = character.name
             itemView.tvComicsCount.text = character.comics.available
             itemView.tvSeriesCount.text = character.series.available
             Glide.with(itemView.ivAvatar)
@@ -72,8 +72,7 @@ class CharacterAdapter(
                         return false
                     }
                 })
-                //.centerCrop()
-                //.circleCrop()
+                .circleCrop()
                 .into(itemView.ivAvatar)
 
 

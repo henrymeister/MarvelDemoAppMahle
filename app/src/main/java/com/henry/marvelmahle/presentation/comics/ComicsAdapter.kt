@@ -15,7 +15,7 @@ import com.bumptech.glide.request.target.Target
 import com.henry.marvelmahle.R
 import com.henry.marvelmahle.data.model.comic.ComicId
 import com.henry.marvelmahle.data.model.comic.ComicResult
-import kotlinx.android.synthetic.main.comics_item_layout.view.*
+import kotlinx.android.synthetic.main.item_comics.view.*
 
 class ComicAdapter(
     private var seriesList: ArrayList<ComicResult>,
@@ -27,7 +27,7 @@ class ComicAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         DataViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.comics_item_layout, parent,
+                R.layout.item_comics, parent,
                 false
             )
         )
@@ -42,10 +42,10 @@ class ComicAdapter(
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(comic: ComicResult, onItemClickListener: (ComicId) -> Unit) {
-            itemView.comic_name.text = comic.title
-            itemView.comic_description.text = comic.description
+            itemView.tvComicName.text = comic.title
+            itemView.tvComicDescription.text = comic.description
 
-            Glide.with(itemView.comic_image)
+            Glide.with(itemView.ivComic)
                 .load(comic.thumbnail.path + "." + comic.thumbnail.extension)
                 .error(R.drawable.ic_launcher_background)
                 .listener(object : RequestListener<Drawable> {
@@ -55,7 +55,7 @@ class ComicAdapter(
                         target: Target<Drawable>?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        itemView.comic_progressbar.isVisible = false
+                        itemView.pbComic.isVisible = false
                         Log.e("CHARACTER", "IMAGE KO")
                         return false
                     }
@@ -67,13 +67,13 @@ class ComicAdapter(
                         dataSource: DataSource?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        itemView.comic_progressbar.isVisible = false
+                        itemView.pbComic.isVisible = false
                         Log.e("CHARACTER", "IMAGE Ok")
                         return false
                     }
                 })
                 .circleCrop()
-                .into(itemView.comic_image)
+                .into(itemView.ivComic)
 
 
             itemView.setOnClickListener {
