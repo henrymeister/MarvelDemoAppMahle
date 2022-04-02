@@ -7,17 +7,23 @@ import androidx.navigation.findNavController
 
 class MainActivity : AppCompatActivity() {
 
+    // region PROPERTIES ---------------------------------------------------------------------------
+
     private val navController by lazy { findNavController(R.id.navHostFragment) }
+    // endregion
+
+    // region LIFECYCLE ----------------------------------------------------------------------------
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        navigateToSplashFragment()
+        navigateToCharactersMainFragment()
     }
     // endregion
 
-    //region NAVIGATION ----------------------------------------------------------------------------
-    private fun navigateToSplashFragment() {
+    // region NAVIGATION ----------------------------------------------------------------------------
+
+    private fun navigateToCharactersMainFragment() {
         navController.navigate(R.id.characterMainFragment)
     }
     // endregion

@@ -1,15 +1,11 @@
-package com.henry.marvelmahle.data.network
+package com.henry.marvelmahle.data.network.character
 
 import com.henry.marvelmahle.data.model.characters.CharacterId
 import com.henry.marvelmahle.data.model.characters.CharacterResponse
-import com.henry.marvelmahle.data.model.comic.ComicResponse
-import com.henry.marvelmahle.data.model.series.SeriesResponse
 import retrofit2.Response
 
-interface ApiHelper {
+interface CharacterApiHelper {
     suspend fun getCharacters(): Response<CharacterResponse>
     suspend fun getCharacterById(characterId: CharacterId): Response<CharacterResponse>
-    suspend fun getCharacterSeries(characterId: CharacterId): Response<SeriesResponse>
-    suspend fun getCharacterComics(characterId: CharacterId): Response<ComicResponse>
     suspend fun searchCharacter(nameStartsWith: String): Response<CharacterResponse>
 }

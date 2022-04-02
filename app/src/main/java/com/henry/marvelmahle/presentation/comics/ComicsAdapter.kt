@@ -22,7 +22,7 @@ class ComicAdapter(
     private var onItemClickListener: (ComicId) -> Unit
 ) : RecyclerView.Adapter<ComicAdapter.DataViewHolder>() {
 
-    //region RECYCLER METHODS ----------------------------------------------------------------------
+    // region RECYCLER METHODS ----------------------------------------------------------------------
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         DataViewHolder(
@@ -38,7 +38,7 @@ class ComicAdapter(
         holder.bind(seriesList[position], onItemClickListener)
     // endregion
 
-    //region HOLDERS -------------------------------------------------------------------------------
+    // region HOLDERS -------------------------------------------------------------------------------
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(comic: ComicResult, onItemClickListener: (ComicId) -> Unit) {
@@ -56,7 +56,6 @@ class ComicAdapter(
                         isFirstResource: Boolean
                     ): Boolean {
                         itemView.pbComic.isVisible = false
-                        Log.e("CHARACTER", "IMAGE KO")
                         return false
                     }
 
@@ -68,7 +67,6 @@ class ComicAdapter(
                         isFirstResource: Boolean
                     ): Boolean {
                         itemView.pbComic.isVisible = false
-                        Log.e("CHARACTER", "IMAGE Ok")
                         return false
                     }
                 })

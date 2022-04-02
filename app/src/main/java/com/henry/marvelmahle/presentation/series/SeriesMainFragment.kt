@@ -66,7 +66,7 @@ class SeriesMainFragment(private val characterId: String): Fragment() {
                 }
                 Status.SUCCESS -> {
                     hideInProgress()
-                    if (it.data == null) {
+                    if (it.data == null || it.data.isEmpty()) {
                         recyclerView.visibility = View.GONE
                         tv_noResultFound.visibility = View.VISIBLE
                     } else {
@@ -79,11 +79,6 @@ class SeriesMainFragment(private val characterId: String): Fragment() {
                     hideInProgress()
                     recyclerView.visibility = View.GONE
                     tv_noResultFound.visibility = View.VISIBLE
-                    Toast.makeText(
-                        requireContext().applicationContext,
-                        it.message,
-                        Toast.LENGTH_LONG
-                    ).show()
                 }
             }
         }

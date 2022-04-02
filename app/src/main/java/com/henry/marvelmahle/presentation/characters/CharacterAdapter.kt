@@ -22,7 +22,7 @@ class CharacterAdapter(
     private var onItemClickListener: (CharacterId) -> Unit
 ) : RecyclerView.Adapter<CharacterAdapter.DataViewHolder>() {
 
-    //region RECYCLER METHODS ----------------------------------------------------------------------
+    // region RECYCLER METHODS ----------------------------------------------------------------------
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         DataViewHolder(
@@ -34,11 +34,17 @@ class CharacterAdapter(
 
     override fun getItemCount(): Int = charactersList.size
 
-    override fun onBindViewHolder(holder: DataViewHolder, position: Int) =
-        holder.bind(charactersList[position], onItemClickListener)
+    override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
+        if (position < 0 || position > itemCount) {
+            throw IndexOutOfBoundsException("Inconsistency detected. Invalid view holder adapter $position $holder")
+        } else {
+            return holder.bind(charactersList[position], onItemClickListener)
+        }
+    }
+
     // endregion
 
-    //region HOLDERS -------------------------------------------------------------------------------
+    // region HOLDERS -------------------------------------------------------------------------------
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(character: CharacterResult, onItemClickListener: (CharacterId) -> Unit) {
@@ -56,7 +62,6 @@ class CharacterAdapter(
                         isFirstResource: Boolean
                     ): Boolean {
                         itemView.character_progressbar.isVisible = false
-                        Log.e("CHARACTER", "IMAGE KO")
                         return false
                     }
 
@@ -68,7 +73,6 @@ class CharacterAdapter(
                         isFirstResource: Boolean
                     ): Boolean {
                         itemView.character_progressbar.isVisible = false
-                        Log.e("CHARACTER", "IMAGE Ok")
                         return false
                     }
                 })

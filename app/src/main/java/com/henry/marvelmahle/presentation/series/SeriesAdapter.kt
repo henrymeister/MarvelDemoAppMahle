@@ -22,7 +22,7 @@ class SeriesAdapter(
     private var onItemClickListener: (SeriesId) -> Unit
 ) : RecyclerView.Adapter<SeriesAdapter.DataViewHolder>() {
 
-    //region RECYCLER METHODS ----------------------------------------------------------------------
+    // region RECYCLER METHODS ----------------------------------------------------------------------
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         DataViewHolder(
@@ -38,7 +38,7 @@ class SeriesAdapter(
         holder.bind(seriesList[position], onItemClickListener)
     // endregion
 
-    //region HOLDERS -------------------------------------------------------------------------------
+    // region HOLDERS -------------------------------------------------------------------------------
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(serie: SeriesResult, onItemClickListener: (SeriesId) -> Unit) {
@@ -56,7 +56,6 @@ class SeriesAdapter(
                         isFirstResource: Boolean
                     ): Boolean {
                         itemView.pbSerie.isVisible = false
-                        Log.e("CHARACTER", "IMAGE KO")
                         return false
                     }
 
@@ -68,7 +67,6 @@ class SeriesAdapter(
                         isFirstResource: Boolean
                     ): Boolean {
                         itemView.pbSerie.isVisible = false
-                        Log.e("CHARACTER", "IMAGE Ok")
                         return false
                     }
                 })

@@ -67,7 +67,7 @@ class CharacterDetailsFragment : Fragment() {
                 }
                 Status.SUCCESS -> {
                     hideInProgress()
-                    if (it.data == null) {
+                    if (it.data == null || it.data.isEmpty()) {
                         Toast.makeText(
                             requireContext().applicationContext,
                             "Character not found",
@@ -83,7 +83,7 @@ class CharacterDetailsFragment : Fragment() {
                     findNavController().popBackStack()
                     Toast.makeText(
                         requireContext().applicationContext,
-                        it.message,
+                        "Character not found",
                         Toast.LENGTH_LONG
                     ).show()
                 }

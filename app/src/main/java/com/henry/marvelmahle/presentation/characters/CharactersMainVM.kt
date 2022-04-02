@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.henry.marvelmahle.data.model.characters.CharacterResult
-import com.henry.marvelmahle.data.repository.AppRepository
+import com.henry.marvelmahle.data.repository.CharactersRepository
 import com.henry.marvelmahle.utils.NetworkHelper
 import com.henry.marvelmahle.utils.Resource
 import kotlinx.coroutines.launch
 
 class CharactersMainVM (
-    private val appRepository: AppRepository,
+    private val repository: CharactersRepository,
     private val networkHelper: NetworkHelper
 ) : ViewModel() {
 
@@ -28,17 +28,19 @@ class CharactersMainVM (
     // region PUBLIC METHODS ----------------------------------------------------------------------
 
     fun searchCharacter(newText: String) {
-        viewModelScope.launch {
-            _characterList.postValue(Resource.loading(null))
-            if (networkHelper.isNetworkConnected()) {
-                appRepository.searchCharacter(newText).let {
-                    if (it.isSuccessful) {
-                        _characterList.postValue(Resource.success(it.body()?.data?.results))
-                    } else {
-                        _characterList.postValue(Resource.error(it.errorBody().toString(), null))
+        if (newText.isNotBlank()) {
+            viewModelScope.launch {
+                _characterList.postValue(Resource.loading(null))
+                if (networkHelper.isNetworkConnected()) {
+                    repository.searchCharacter(newText).let {
+                        if (it.isSuccessful) {
+                            _characterList.postValue(Resource.success(it.body()?.data?.results))
+                        } else {
+                            _characterList.postValue(Resource.error(it.errorBody().toString(), null))
+                        }
                     }
-                }
-            } else _characterList.postValue(Resource.error("No internet connection", null))
+                } else _characterList.postValue(Resource.error("No internet connection", null))
+            }
         }
     }
     // endregion
@@ -49,7 +51,7 @@ class CharactersMainVM (
         viewModelScope.launch {
             _characterList.postValue(Resource.loading(null))
             if (networkHelper.isNetworkConnected()) {
-                appRepository.getCharacters().let {
+                repository.getCharacters().let {
                     if (it.isSuccessful) {
                         _characterList.postValue(Resource.success(it.body()?.data?.results))
                     } else {
