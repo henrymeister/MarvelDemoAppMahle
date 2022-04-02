@@ -26,11 +26,13 @@ class SeriesMainVM (
 
     // region PUBLIC METHODS ----------------------------------------------------------------------
 
-    fun getCharacterSeriesList(characterId: CharacterId) {
+    fun getCharacterSeriesList(characterId: CharacterId, offset: Int = 0) {
         viewModelScope.launch {
-            _characterSeriesList.postValue(Resource.loading(null))
+            if (offset == 0) {
+                _characterSeriesList.postValue(Resource.loading(null))
+            }
             if (networkHelper.isNetworkConnected()) {
-                repository.getCharacterSeries(characterId).let {
+                repository.getCharacterSeries(characterId, offset).let {
                     if (it.isSuccessful) {
                         _characterSeriesList.postValue(Resource.success(it.body()?.data?.results))
                     } else {

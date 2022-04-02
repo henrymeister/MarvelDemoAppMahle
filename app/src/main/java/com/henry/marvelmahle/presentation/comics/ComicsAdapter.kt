@@ -1,7 +1,6 @@
 package com.henry.marvelmahle.presentation.comics
 
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,7 @@ import com.henry.marvelmahle.data.model.comic.ComicResult
 import kotlinx.android.synthetic.main.item_comics.view.*
 
 class ComicAdapter(
-    private var seriesList: ArrayList<ComicResult>,
+    private var comicsList: ArrayList<ComicResult>,
     private var onItemClickListener: (ComicId) -> Unit
 ) : RecyclerView.Adapter<ComicAdapter.DataViewHolder>() {
 
@@ -32,10 +31,10 @@ class ComicAdapter(
             )
         )
 
-    override fun getItemCount(): Int = seriesList.size
+    override fun getItemCount(): Int = comicsList.size
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) =
-        holder.bind(seriesList[position], onItemClickListener)
+        holder.bind(comicsList[position], onItemClickListener)
     // endregion
 
     // region HOLDERS -------------------------------------------------------------------------------
@@ -84,9 +83,12 @@ class ComicAdapter(
 
     // region PUBLIC METHODS -----------------------------------------------------------------------
 
-    fun setData(list: List<ComicResult>, onItemClickListener: (ComicId) -> Unit) {
-        seriesList = ArrayList()
-        seriesList.addAll(list)
+    fun addData(list: List<ComicResult>, onItemClickListener: (ComicId) -> Unit) {
+        list.forEach { comic ->
+            if (!comicsList.contains(comic)) {
+                comicsList.add(comic)
+            }
+        }
         this.onItemClickListener = onItemClickListener
     }
     // endregion

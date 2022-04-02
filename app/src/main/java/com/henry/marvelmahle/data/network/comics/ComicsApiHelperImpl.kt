@@ -6,7 +6,7 @@ import retrofit2.Response
 
 class ComicsApiHelperImpl(private val apiService: ComicsApiService) : ComicsApiHelper {
 
-    override suspend fun getCharacterComics(characterId: CharacterId): Response<ComicResponse> {
-        return apiService.getCharacterComics(characterId)
+    override suspend fun getCharacterComics(characterId: CharacterId, offset: Int): Response<ComicResponse> {
+        return apiService.getCharacterComics(characterId, offset)
     }
 }

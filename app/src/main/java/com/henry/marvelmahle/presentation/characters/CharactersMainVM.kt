@@ -19,10 +19,6 @@ class CharactersMainVM (
 
     private val _characterList = MutableLiveData<Resource<List<CharacterResult>>>()
     val characterList: LiveData<Resource<List<CharacterResult>>> = _characterList
-
-    init {
-        getCharacterList()
-    }
     // endregion
 
     // region PUBLIC METHODS ----------------------------------------------------------------------
@@ -43,15 +39,14 @@ class CharactersMainVM (
             }
         }
     }
-    // endregion
 
-    // region PRIVATE METHODS ----------------------------------------------------------------------
-
-    private fun getCharacterList() {
+    fun getAllCharacterList(offSet: Int = 0) {
         viewModelScope.launch {
-            _characterList.postValue(Resource.loading(null))
+            if (offSet == 0) {
+                _characterList.postValue(Resource.loading(null))
+            }
             if (networkHelper.isNetworkConnected()) {
-                repository.getCharacters().let {
+                repository.getCharacters(offSet).let {
                     if (it.isSuccessful) {
                         _characterList.postValue(Resource.success(it.body()?.data?.results))
                     } else {
@@ -61,6 +56,5 @@ class CharactersMainVM (
             } else _characterList.postValue(Resource.error("No internet connection", null))
         }
     }
-
     // endregion
 }

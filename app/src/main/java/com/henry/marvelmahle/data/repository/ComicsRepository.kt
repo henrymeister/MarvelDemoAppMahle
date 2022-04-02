@@ -8,7 +8,7 @@ import retrofit2.Response
 class ComicsRepository (
     private val apiHelper: ComicsApiHelper
 ) {
-    suspend fun getCharacterComics(characterId: CharacterId): Response<ComicResponse> {
-        return apiHelper.getCharacterComics(characterId)
+    suspend fun getCharacterComics(characterId: CharacterId, offset: Int = 0): Response<ComicResponse> {
+        return apiHelper.getCharacterComics(characterId, offset)
     }
 }

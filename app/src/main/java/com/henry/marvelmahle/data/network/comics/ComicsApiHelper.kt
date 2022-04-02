@@ -7,5 +7,5 @@ import com.henry.marvelmahle.data.model.series.SeriesResponse
 import retrofit2.Response
 
 interface ComicsApiHelper {
-    suspend fun getCharacterComics(characterId: CharacterId): Response<ComicResponse>
+    suspend fun getCharacterComics(characterId: CharacterId, offset: Int): Response<ComicResponse>
 }

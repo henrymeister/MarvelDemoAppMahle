@@ -90,10 +90,18 @@ class CharacterAdapter(
 
     // region PUBLIC METHODS -----------------------------------------------------------------------
 
-    fun setData(list: List<CharacterResult>, onItemClickListener: (CharacterId) -> Unit) {
-        charactersList = ArrayList()
-        charactersList.addAll(list)
+    fun addData(list: List<CharacterResult>, onItemClickListener: (CharacterId) -> Unit) {
+        list.forEach { character ->
+            if (!charactersList.contains(character)) {
+                charactersList.add(character)
+            }
+        }
         this.onItemClickListener = onItemClickListener
+    }
+
+    fun dumpList() {
+        charactersList = arrayListOf()
+        Log.e("characters -> ", charactersList.size.toString())
     }
     // endregion
 }

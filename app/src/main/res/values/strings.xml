@@ -6,4 +6,7 @@
     <string name="comics">Comics:</string>
     <string name="series">Series:</string>
     <string name="search">Search</string>
+    <string name="comic_title">Comics</string>
+    <string name="series_title">Series</string>
+    <string name="go_back">Go back</string>
 </resources>

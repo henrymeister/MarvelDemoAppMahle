@@ -7,8 +7,8 @@ import com.henry.marvelmahle.data.model.series.SeriesResponse
 import retrofit2.Response
 
 class CharacterApiHelperImpl(private val apiService: CharacterApiService) : CharacterApiHelper {
-    override suspend fun getCharacters(): Response<CharacterResponse> {
-        return apiService.getCharacters()
+    override suspend fun getCharacters(offset: Int): Response<CharacterResponse> {
+        return apiService.getCharacters(offset = offset)
     }
 
     override suspend fun getCharacterById(characterId: CharacterId): Response<CharacterResponse> {
