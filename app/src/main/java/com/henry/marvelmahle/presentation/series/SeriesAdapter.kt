@@ -13,6 +13,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.henry.marvelmahle.R
+import com.henry.marvelmahle.data.model.comic.ComicResult
 import com.henry.marvelmahle.data.model.series.SeriesId
 import com.henry.marvelmahle.data.model.series.SeriesResult
 import kotlinx.android.synthetic.main.item_series.view.*
@@ -84,9 +85,12 @@ class SeriesAdapter(
 
     // region PUBLIC METHODS -----------------------------------------------------------------------
 
-    fun setData(list: List<SeriesResult>, onItemClickListener: (SeriesId) -> Unit) {
-        seriesList = ArrayList()
-        seriesList.addAll(list)
+    fun addData(list: List<SeriesResult>, onItemClickListener: (SeriesId) -> Unit) {
+        list.forEach { serie ->
+            if (!seriesList.contains(serie)) {
+                seriesList.add(serie)
+            }
+        }
         this.onItemClickListener = onItemClickListener
     }
     // endregion

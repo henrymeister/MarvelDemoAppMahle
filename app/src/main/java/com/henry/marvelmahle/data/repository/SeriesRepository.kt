@@ -8,7 +8,7 @@ import retrofit2.Response
 class SeriesRepository (
     private val apiHelper: SeriesApiHelper
 ) {
-    suspend fun getCharacterSeries(characterId: CharacterId): Response<SeriesResponse> {
-        return apiHelper.getCharacterSeries(characterId)
+    suspend fun getCharacterSeries(characterId: CharacterId, offset: Int = 0): Response<SeriesResponse> {
+        return apiHelper.getCharacterSeries(characterId, offset)
     }
 }

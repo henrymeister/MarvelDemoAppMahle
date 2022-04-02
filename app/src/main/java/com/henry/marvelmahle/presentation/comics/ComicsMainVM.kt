@@ -26,11 +26,13 @@ class ComicsMainVM (
 
     // region PUBLIC METHODS ----------------------------------------------------------------------
 
-    fun getCharacterComicsList(characterId: CharacterId) {
+    fun getCharacterComicsList(characterId: CharacterId, offset: Int = 0) {
         viewModelScope.launch {
-            _characterComicsList.postValue(Resource.loading(null))
+            if (offset == 0) {
+                _characterComicsList.postValue(Resource.loading(null))
+            }
             if (networkHelper.isNetworkConnected()) {
-                repository.getCharacterComics(characterId).let {
+                repository.getCharacterComics(characterId, offset).let {
                     if (it.isSuccessful) {
                         _characterComicsList.postValue(Resource.success(it.body()?.data?.results))
                     } else {

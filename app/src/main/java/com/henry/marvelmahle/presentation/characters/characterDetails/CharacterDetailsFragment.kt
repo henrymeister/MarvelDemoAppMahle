@@ -2,11 +2,8 @@ package com.henry.marvelmahle.presentation.characters.characterDetails
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -113,8 +110,8 @@ class CharacterDetailsFragment : Fragment() {
 
         TabLayoutMediator(tlCharacter, vpCharacter) { tab, position ->
             when (position) {
-                0 -> tab.text = resources.getString(R.string.comicTitle)
-                1 -> tab.text = resources.getString(R.string.seriesTitle)
+                0 -> tab.text = resources.getString(R.string.comic_title)
+                1 -> tab.text = resources.getString(R.string.series_title)
             }
         }.attach()
     }

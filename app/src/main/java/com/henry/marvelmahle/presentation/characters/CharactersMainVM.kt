@@ -42,10 +42,10 @@ class CharactersMainVM (
 
     fun getAllCharacterList(offSet: Int = 0) {
         viewModelScope.launch {
+            if (offSet == 0) {
+                _characterList.postValue(Resource.loading(null))
+            }
             if (networkHelper.isNetworkConnected()) {
-                if (offSet == 0) {
-                    _characterList.postValue(Resource.loading(null))
-                }
                 repository.getCharacters(offSet).let {
                     if (it.isSuccessful) {
                         _characterList.postValue(Resource.success(it.body()?.data?.results))

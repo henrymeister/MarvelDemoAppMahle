@@ -17,6 +17,6 @@ interface ComicsApiService {
     suspend fun getCharacterComics(
         @Path("characterId") characterId: CharacterId,
         @Query("offset") offset: Int? = 0,
-        @Query("limit") limit: Int? = 100
+        @Query("limit") limit: Int? = 20
     ): Response<ComicResponse>
 }

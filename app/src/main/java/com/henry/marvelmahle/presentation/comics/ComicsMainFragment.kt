@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.henry.marvelmahle.R
 import com.henry.marvelmahle.data.model.comic.ComicId
 import com.henry.marvelmahle.data.model.comic.ComicResult
+import com.henry.marvelmahle.ext.PaginationScrollListener
 import com.henry.marvelmahle.ext.hideInProgress
 import com.henry.marvelmahle.ext.showInProgress
 import com.henry.marvelmahle.ext.showInProgressTouchable
@@ -23,6 +24,8 @@ class ComicsMainFragment(private val characterId: String): Fragment() {
 
     private val viewModel : ComicsMainVM by viewModel()
     private lateinit var adapter: ComicAdapter
+    var isLastPage: Boolean = false
+    var isLoading: Boolean = false
 
     private val onAdapterItemClick: (ComicId) -> Unit = { comicId ->
         //navigateToCharacterDetails(characterId)
@@ -55,6 +58,22 @@ class ComicsMainFragment(private val characterId: String): Fragment() {
             )
         )
         recyclerView.adapter = adapter
+
+        recyclerView.addOnScrollListener(object : PaginationScrollListener(recyclerView.layoutManager as LinearLayoutManager) {
+            override fun isLastPage(): Boolean {
+                return isLastPage
+            }
+
+            override fun isLoading(): Boolean {
+                return isLoading
+            }
+
+            override fun loadMoreItems() {
+                isLoading = true
+                showInProgressTouchable()
+                viewModel.getCharacterComicsList(characterId, adapter.itemCount)
+            }
+        })
     }
 
     private fun setObserver() {
@@ -67,10 +86,8 @@ class ComicsMainFragment(private val characterId: String): Fragment() {
                 }
                 Status.SUCCESS -> {
                     hideInProgress()
-                    if (it.data == null || it.data.isEmpty()) {
-                        recyclerView.visibility = View.GONE
-                        tv_noResultFound.visibility = View.VISIBLE
-                    } else {
+                    isLoading = false
+                    if (!it.data.isNullOrEmpty()) {
                         renderList(it.data)
                         recyclerView.visibility = View.VISIBLE
                         tv_noResultFound.visibility = View.GONE
@@ -86,7 +103,7 @@ class ComicsMainFragment(private val characterId: String): Fragment() {
     }
 
     private fun renderList(comics: List<ComicResult>) {
-        adapter.setData(comics, onAdapterItemClick)
+        adapter.addData(comics, onAdapterItemClick)
         adapter.notifyItemRangeChanged(0, comics.size)
     }
     // endregion
