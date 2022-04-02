@@ -2,7 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/comic_cardView"
+    android:id="@+id/mcvComic"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/general_margin"
@@ -13,32 +13,35 @@
         android:layout_height="150dp"
         android:padding="10dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/comic_image_constraint"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clComic"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:cardCornerRadius="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/comic_image"
+                android:id="@+id/ivComic"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 tools:ignore="ContentDescription" />
 
             <ProgressBar
-                android:id="@+id/comic_progressbar"
+                android:id="@+id/pbComic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"/>
+                android:layout_gravity="center_horizontal|center_vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/comic_name"
+            android:id="@+id/tvComicName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/general_margin"
@@ -49,12 +52,12 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/comic_image_constraint"
+            app:layout_constraintStart_toEndOf="@+id/clComic"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Spider-Man Comic" />
 
         <TextView
-            android:id="@+id/comic_description"
+            android:id="@+id/tvComicDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/general_half_margin"
@@ -64,8 +67,8 @@
             android:fontFamily="sans-serif-medium"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/comic_name"
-            app:layout_constraintTop_toBottomOf="@+id/comic_name"
+            app:layout_constraintStart_toStartOf="@+id/tvComicName"
+            app:layout_constraintTop_toBottomOf="@+id/tvComicName"
             tools:text="Spider-Man is a superhero appearing in American comic books published by Marvel Comics." />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

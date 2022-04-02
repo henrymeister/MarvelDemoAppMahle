@@ -14,6 +14,10 @@ class AppRepository (
         return apiHelper.getCharacters()
     }
 
+    suspend fun getCharacterById(characterId: CharacterId): Response<CharacterResponse> {
+        return apiHelper.getCharacterById(characterId)
+    }
+
     suspend fun getCharacterSeries(characterId: CharacterId): Response<SeriesResponse> {
         return apiHelper.getCharacterSeries(characterId)
     }

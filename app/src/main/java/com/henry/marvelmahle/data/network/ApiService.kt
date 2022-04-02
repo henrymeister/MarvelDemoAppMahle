@@ -22,6 +22,11 @@ interface ApiService {
     @GET(PATH)
     suspend fun getCharacters(): Response<CharacterResponse>
 
+    @GET(CHARACTER_BY_ID_PATH)
+    suspend fun getCharacterById(
+        @Path("characterId") characterId: CharacterId
+    ): Response<CharacterResponse>
+
     @GET(CHARACTER_SERIES_PATH)
     suspend fun getCharacterSeries(
         @Path("characterId") characterId: CharacterId
