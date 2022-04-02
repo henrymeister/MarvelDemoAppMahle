@@ -3,9 +3,15 @@ package com.henry.marvelmahle.di
 import android.content.Context
 import com.henry.marvelmahle.BuildConfig.API_URL
 import com.henry.marvelmahle.BuildConfig
-import com.henry.marvelmahle.data.network.ApiHelper
-import com.henry.marvelmahle.data.network.ApiHelperImpl
-import com.henry.marvelmahle.data.network.ApiService
+import com.henry.marvelmahle.data.network.character.CharacterApiHelper
+import com.henry.marvelmahle.data.network.character.CharacterApiHelperImpl
+import com.henry.marvelmahle.data.network.character.CharacterApiService
+import com.henry.marvelmahle.data.network.comics.ComicsApiHelper
+import com.henry.marvelmahle.data.network.comics.ComicsApiHelperImpl
+import com.henry.marvelmahle.data.network.comics.ComicsApiService
+import com.henry.marvelmahle.data.network.series.SeriesApiHelper
+import com.henry.marvelmahle.data.network.series.SeriesApiHelperImpl
+import com.henry.marvelmahle.data.network.series.SeriesApiService
 import com.henry.marvelmahle.utils.NetworkHelper
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,11 +27,19 @@ import java.sql.Timestamp
 val appModule = module {
     single { provideOkHttpClient() }
     single { provideRetrofit(get(), API_URL) }
-    single { provideApiService(get()) }
+    single { provideCharactersApiService(get()) }
+    single { provideSeriesApiService(get()) }
+    single { provideComicsApiService(get()) }
     single { provideNetworkHelper(androidContext()) }
 
-    single<ApiHelper> {
-        return@single ApiHelperImpl(get())
+    single<CharacterApiHelper> {
+        return@single CharacterApiHelperImpl(get())
+    }
+    single<SeriesApiHelper> {
+        return@single SeriesApiHelperImpl(get())
+    }
+    single<ComicsApiHelper> {
+        return@single ComicsApiHelperImpl(get())
     }
 }
 
@@ -76,5 +90,11 @@ private fun provideRetrofit(
         .client(okHttpClient)
         .build()
 
-private fun provideApiService(retrofit: Retrofit): ApiService =
-    retrofit.create(ApiService::class.java)
+private fun provideCharactersApiService(retrofit: Retrofit): CharacterApiService =
+    retrofit.create(CharacterApiService::class.java)
+
+private fun provideSeriesApiService(retrofit: Retrofit): SeriesApiService =
+    retrofit.create(SeriesApiService::class.java)
+
+private fun provideComicsApiService(retrofit: Retrofit): ComicsApiService =
+    retrofit.create(ComicsApiService::class.java)

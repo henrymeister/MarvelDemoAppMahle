@@ -6,13 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.henry.marvelmahle.data.model.characters.CharacterId
 import com.henry.marvelmahle.data.model.comic.ComicResult
-import com.henry.marvelmahle.data.repository.AppRepository
+import com.henry.marvelmahle.data.repository.ComicsRepository
 import com.henry.marvelmahle.utils.NetworkHelper
 import com.henry.marvelmahle.utils.Resource
 import kotlinx.coroutines.launch
 
 class ComicsMainVM (
-    private val appRepository: AppRepository,
+    private val repository: ComicsRepository,
     private val networkHelper: NetworkHelper
 ) : ViewModel() {
 
@@ -30,7 +30,7 @@ class ComicsMainVM (
         viewModelScope.launch {
             _characterComicsList.postValue(Resource.loading(null))
             if (networkHelper.isNetworkConnected()) {
-                appRepository.getCharacterComics(characterId).let {
+                repository.getCharacterComics(characterId).let {
                     if (it.isSuccessful) {
                         _characterComicsList.postValue(Resource.success(it.body()?.data?.results))
                     } else {

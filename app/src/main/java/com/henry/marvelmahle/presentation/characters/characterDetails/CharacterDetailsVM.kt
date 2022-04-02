@@ -6,13 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.henry.marvelmahle.data.model.characters.CharacterId
 import com.henry.marvelmahle.data.model.characters.CharacterResult
-import com.henry.marvelmahle.data.repository.AppRepository
+import com.henry.marvelmahle.data.repository.CharactersRepository
 import com.henry.marvelmahle.utils.NetworkHelper
 import com.henry.marvelmahle.utils.Resource
 import kotlinx.coroutines.launch
 
 class CharacterDetailsVM (
-    private val appRepository: AppRepository,
+    private val repository: CharactersRepository,
     private val networkHelper: NetworkHelper
 ) : ViewModel() {
 
@@ -28,7 +28,7 @@ class CharacterDetailsVM (
         viewModelScope.launch {
             _character.postValue(Resource.loading(null))
             if (networkHelper.isNetworkConnected()) {
-                appRepository.getCharacterById(characterId).let {
+                repository.getCharacterById(characterId).let {
                     if (it.isSuccessful) {
                         _character.postValue(Resource.success(it.body()?.data?.results))
                     } else {
