@@ -15,7 +15,10 @@ interface CharacterApiService {
     }
 
     @GET(PATH)
-    suspend fun getCharacters(): Response<CharacterResponse>
+    suspend fun getCharacters(
+        @Query("offset") offset: Int? = 0,
+        @Query("limit") limit: Int? = 100
+    ): Response<CharacterResponse>
 
     @GET(CHARACTER_BY_ID_PATH)
     suspend fun getCharacterById(
@@ -26,6 +29,6 @@ interface CharacterApiService {
     suspend fun searchCharacter(
         @Query("nameStartsWith") query: String,
         @Query("offset") offset: Int? = 0,
-        @Query("limit") limit: Int? = 20
+        @Query("limit") limit: Int? = 100
     ): Response<CharacterResponse>
 }
