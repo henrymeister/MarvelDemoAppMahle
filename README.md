@@ -1,24 +1,33 @@
 # MarvelDemoAppMahle
-Using Kotlin and `Kotlin` plugin for Android Studio.
-[MVVM]
+Using Kotlin with [MVVM] architecture
 
 ## Libraries :
 
-Networking
-[Okhttp](https://square.github.io/okhttp/)
+### Networking:
+* [Okhttp](https://square.github.io/okhttp/)
 
-[Retrofit](http://square.github.io/retrofit/)
+* [Retrofit](http://square.github.io/retrofit/)
 
-[Gson converter](https://github.com/square/retrofit/tree/master/retrofit-converters/gson)
+* [Gson converter](https://github.com/square/retrofit/tree/master/retrofit-converters/gson)
 
-[Gson](https://github.com/google/gson)
+* [Gson](https://github.com/google/gson)
 
-[Koin](https://insert-koin.io/) Coroutines, dependencies injection and view models
+### Coroutines, dependencies injection and view models:
+* [Koin](https://insert-koin.io/)
 
-[Material](https://github.com/material-components/material-components-android)
+### Material:
+* [Material](https://github.com/material-components/material-components-android)
 
-[JetPack navigation compose](https://developer.android.com/guide/navigation)
+### Jetpack:
+* [JetPack navigation compose](https://developer.android.com/guide/navigation)
 
-[Glide](https://github.com/bumptech/glide) For picture processing
+###  Picture processing:
+* [Glide](https://github.com/bumptech/glide)
 
-[Kotlinx](https://github.com/Kotlin/kotlinx.coroutines) For coroutines
+### Coroutines:
+* [Kotlinx](https://github.com/Kotlin/kotlinx.coroutines)
+
+## Compatibility:
+
+* Minimum Android SDK: Requires a minimum API level of 23.
+* Compile Android SDK: Requires you to compile against API 31 or later.
